@@ -1,11 +1,29 @@
 
+// Get HTML elements
 const loginForm = document.getElementById("loginForm");
-
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
-
 const message = document.getElementById("message");
 
+// Display message safely
+function showMessage(text) {
+    message.textContent = text;
+}
+
+// Check password strength
+function checkPasswordStrength(password) {
+
+    if (password.length < 8) {
+        return false;
+    }
+
+    const hasNumber = /[0-9]/.test(password);
+    const hasLetter = /[a-zA-Z]/.test(password);
+
+    return hasNumber && hasLetter;
+}
+
+// Handle login form
 loginForm.addEventListener("submit", function(event) {
 
     event.preventDefault();
@@ -13,31 +31,31 @@ loginForm.addEventListener("submit", function(event) {
     const email = emailInput.value.trim();
     const password = passwordInput.value;
 
+    // Check empty fields
     if (email === "" || password === "") {
-
-        message.textContent = "Please fill in all fields.";
-
+        showMessage("Please fill in all fields.");
         return;
     }
 
+    // Check email format
     if (!emailInput.validity.valid) {
-
-        message.textContent = "Please enter a valid email.";
-
+        showMessage("Please enter a valid email.");
         return;
     }
 
-    if (password.length < 8) {
-
-        message.textContent = "Password must contain at least 8 characters.";
-
+    // Check password strength
+    if (!checkPasswordStrength(password)) {
+        showMessage(
+            "Password must contain 8 characters, letters and numbers."
+        );
         return;
     }
 
-    message.textContent = "Input validation successful!";
-    
+    showMessage("Input validation successful!");
 
 });
+
+// Security testing
 const userInput = document.getElementById("userInput");
 const testButton = document.getElementById("testButton");
 const output = document.getElementById("output");
