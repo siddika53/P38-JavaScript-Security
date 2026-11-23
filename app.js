@@ -1,9 +1,9 @@
 
 // Get HTML elements
 const loginForm = document.getElementById("loginForm");
-const emailInput = document.getElementById("email");
+cons emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
-const message = document.getElementById("message");
+cons message = document.getElementById("message");
 
 // Display message safely
 function showMessage(text) {
